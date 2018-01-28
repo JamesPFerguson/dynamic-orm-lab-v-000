@@ -53,11 +53,11 @@ class InteractiveRecord
     DB[:conn].execute(sql)
   end
 
-  def self.find_by(column, value)
-    if value.instance_of? (Integer)
-      sql = "SELECT * FROM #{self.table_name} WHERE #{column} = #{value}"
+  def self.find_by(attributes)
+    if attributes.values.first.instance_of? (Integer)
+      sql = "SELECT * FROM #{self.table_name} WHERE #{attributes.keys.first} = #{value}"
     else
-      sql = "SELECT * FROM #{self.table_name} WHERE #{column} = '#{value}'"
+      sql = "SELECT * FROM #{self.table_name} WHERE #{attributes.keys.first} = '#{value}'"
     end
 
     DB[:conn].execute(sql)
